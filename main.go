@@ -1,14 +1,24 @@
 package main
 
 import (
+	"go-wildlife/models"
 	"go-wildlife/routes"
+
+	"log"
 
 	"github.com/gin-gonic/gin"
 )
 
+func checkErr(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
 func main() {
 	r := gin.Default() //router
 
+	models.ConnectDb()
 	app := r.Group("/api")
 
 	{

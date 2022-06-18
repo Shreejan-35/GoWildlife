@@ -1,13 +1,30 @@
 package routes
 
 import (
+	"go-wildlife/models"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
+func checkErr(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
 func GetAnimals(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"message": "GetAnimals Called"})
+	wildlife, err := models.AnimalsGot()
+
+	checkErr(err)
+
+	if wildlife == nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "No Records Found"})
+		return
+	} else {
+		c.JSON(http.StatusOK, gin.H{"data": wildlife})
+	}
 }
 
 func GetAnimalById(c *gin.Context) {
