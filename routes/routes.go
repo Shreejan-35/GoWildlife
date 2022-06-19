@@ -4,6 +4,7 @@ import (
 	"go-wildlife/models"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -29,15 +30,56 @@ func GetAnimals(c *gin.Context) {
 
 func GetAnimalById(c *gin.Context) {
 	id := c.Param("id")
-	c.JSON(http.StatusOK, gin.H{"message": "GetAnimalById " + id + " Called"})
+
+	animal, err := models.AnimalGotById(id)
+	checkErr(err)
+
+	if animal.Name == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "No Records Found"})
+		return
+	} else {
+		c.JSON(http.StatusOK, gin.H{"data": animal})
+	}
 }
 
 func AddAnimal(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"message": "AddAnimal Called"})
+	var json models.Animal
+
+	if err := c.ShouldBindJSON(&json); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	success, err := models.AnimalAdded(json)
+
+	if success {
+		c.JSON(http.StatusOK, gin.H{"message": "Success"})
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err})
+	}
 }
 
 func UpdateAnimal(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"message": "UpdateAnimal Called"})
+	var json models.Animal
+
+	if err := c.ShouldBindJSON(&json); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	animalId, err := strconv.Atoi(c.Param("id"))
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
+	}
+
+	success, err := models.AnimalUpdated(json, animalId)
+
+	if success {
+		c.JSON(http.StatusOK, gin.H{"message": "Success"})
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err})
+	}
 }
 
 func DeleteAnimal(c *gin.Context) {

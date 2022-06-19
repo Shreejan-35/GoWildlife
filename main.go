@@ -24,9 +24,9 @@ func main() {
 	{
 		app.GET("animals", routes.GetAnimals)
 		app.GET("animal/:id", routes.GetAnimalById)
-		app.POST("person", routes.AddAnimal)
-		app.PUT("person/:id", routes.UpdateAnimal)
-		app.DELETE("person/:id", routes.DeleteAnimal)
+		app.POST("addanimal", routes.AddAnimal)
+		app.PUT("upanimal/:id", routes.UpdateAnimal)
+		app.DELETE("delanimal/:id", routes.DeleteAnimal)
 	}
 
 	r.Run()
