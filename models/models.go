@@ -115,14 +115,17 @@ func AnimalAdded(newAnimal Animal) (bool, error) {
 
 func AnimalUpdated(animalUpdate Animal, id int) (bool, error) {
 	tx, err := DB.Begin()
-
 	if err != nil {
+		fmt.Println("ok")
 		return false, err
 	}
 
-	stmt, err := tx.Prepare("UPDATE wildlife set name = ? scientificname = ? placesfound = ? description = ? WHERE id = ?")
+	stmt, err := tx.Prepare("UPDATE wildlife SET name = ?, scientificname = ?, placesfound = ?, description = ? WHERE id = ?")
 
 	if err != nil {
+		fmt.Println("ok2")
+		fmt.Println(err)
+
 		return false, err
 	}
 
@@ -131,6 +134,8 @@ func AnimalUpdated(animalUpdate Animal, id int) (bool, error) {
 	_, err = stmt.Exec(animalUpdate.Name, animalUpdate.ScientificName, animalUpdate.Places, animalUpdate.Description, animalUpdate.Id)
 
 	if err != nil {
+		fmt.Println("ok3")
+
 		return false, err
 	}
 

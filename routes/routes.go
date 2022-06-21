@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"fmt"
 	"go-wildlife/models"
 	"log"
 	"net/http"
@@ -63,6 +64,7 @@ func UpdateAnimal(c *gin.Context) {
 	var json models.Animal
 
 	if err := c.ShouldBindJSON(&json); err != nil {
+		fmt.Println("ok45")
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -70,6 +72,8 @@ func UpdateAnimal(c *gin.Context) {
 	animalId, err := strconv.Atoi(c.Param("id"))
 
 	if err != nil {
+		fmt.Println("ok46")
+
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
 	}
 
@@ -78,6 +82,7 @@ func UpdateAnimal(c *gin.Context) {
 	if success {
 		c.JSON(http.StatusOK, gin.H{"message": "Success"})
 	} else {
+		fmt.Println("ok47")
 		c.JSON(http.StatusBadRequest, gin.H{"error": err})
 	}
 }
