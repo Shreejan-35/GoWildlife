@@ -131,7 +131,7 @@ func AnimalUpdated(animalUpdate Animal, id int) (bool, error) {
 
 	defer stmt.Close()
 
-	_, err = stmt.Exec(animalUpdate.Name, animalUpdate.ScientificName, animalUpdate.Places, animalUpdate.Description, animalUpdate.Id)
+	_, err = stmt.Exec(animalUpdate.Name, animalUpdate.ScientificName, animalUpdate.Places, animalUpdate.Description, id)
 
 	if err != nil {
 		fmt.Println("ok3")
