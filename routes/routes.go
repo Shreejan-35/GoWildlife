@@ -88,6 +88,17 @@ func UpdateAnimal(c *gin.Context) {
 }
 
 func DeleteAnimal(c *gin.Context) {
-	id := c.Param("id")
-	c.JSON(http.StatusOK, gin.H{"message": "DeleteAnimal " + id + " Called"})
+	animalId, err := strconv.Atoi(c.Param("id"))
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
+	}
+
+	success, err := models.AnimalDeleted(animalId)
+
+	if success {
+		c.JSON(http.StatusOK, gin.H{"message": "Success"})
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err})
+	}
 }

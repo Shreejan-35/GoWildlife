@@ -143,3 +143,29 @@ func AnimalUpdated(animalUpdate Animal, id int) (bool, error) {
 
 	return true, nil
 }
+
+func AnimalDeleted(animalId int) (bool, error) {
+	tx, err := DB.Begin()
+
+	if err != nil {
+		return false, err
+	}
+
+	stmt, err := DB.Prepare("DELETE from wildlife where id = ?")
+
+	if err != nil {
+		return false, err
+	}
+
+	defer stmt.Close()
+
+	_, err = stmt.Exec(animalId)
+
+	if err != nil {
+		return false, err
+	}
+
+	tx.Commit()
+
+	return true, nil
+}
