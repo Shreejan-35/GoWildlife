@@ -6,6 +6,8 @@ import (
 
 	"log"
 
+	"github.com/gin-gonic/contrib/static"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,6 +19,8 @@ func checkErr(err error) {
 
 func main() {
 	r := gin.Default() //router
+
+	r.Use(static.Serve("/", static.LocalFile("./templates", true)))
 
 	models.ConnectDb()
 	app := r.Group("/api")
