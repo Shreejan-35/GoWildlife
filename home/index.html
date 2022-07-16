@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Go Wildlife</title>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <nav>
+    <div class="container">
+      <div class="nav-container">
+        <div class="title">
+          <a href="index.html">
+            <h4>WOW</h4>
+          </a>
+        </div>
+        <div class="menu">
+          <ul class="nav_menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
+        <button id="close-mneu-btn"><i class="uil uil-multiply"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="container header_container">
+      <div class="header_left">
+        <h1>Welcome to World of Wildlife</h1>
+        <p>
+          World Of Wildlife is the collection of wild animals which is supported by you all.
+        </p>
+        <a href="/api/animals" class="btn btn-primary">API</a>
+      </div>
+
+      <div class="header_right">
+        <div class="header_right-image"></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="middle">
+    <div class="container middle_container">
+      <div class="left">
+        <h2>Description</h2>
+        <p>
+          World of Wildlife is a website made with GO language. All the collection of animals 
+          that are shown here are retrieved from the api. The api is also made with the GO language. 
+        </p>
+        <br>
+        <ul>
+          <li>
+            <h4>How the information is collected?</h4>
+            <p>The data is given by the users that have registered in this website which is added to the api. Any irrelevant
+              data will be deleted.</p>
+          </li>
+          <li><h4>Database</h4>
+          <p>All the data is stored in a sqlite database. It is easy to work with sqlite as it is fast, secure and light</p>
+          </li>
+          <li>
+            <h4>Fast and Secure</h4>
+            <p>The website is hosted on Heroku and it is fast and the data of the user is secured.</p>
+          </li>
+        </ul>
+      </div>
+      <div class="right">
+        <h2>Github</h2>
+        <p>
+          The source code of the project is available on Github as well. It is open source. The link to the repo - <a href="https://github.com/Shreejan-35/WOW">WOW</a> 
+          You can contirbute to the project by - <br><br>
+          <h5>Create a new issue</h5>
+          If you spot a problem with the docs, search if an issue already exists. If a related issue doesn't exist, you can open a
+          new issue using a relevant issue form.
+          <br>
+          <br>
+          <h5>Solve an issue</h5>
+          Scan through our existing issues to find one that interests you. You can narrow down the search using labels as filters.
+          See Labels for more information. As a general rule, we don’t assign issues to anyone. If you find an issue to work on,
+          you are welcome to open a PR with a fix.
+
+          <br><br>
+          <h5>Open a Pull Request</h5>
+          When you are done with the changes, open a pull request.
+
+          <br><br>
+          You can see the Github stats of the repo here as well - 
+          <br>
+          Stars = <div id="stars" class="stars"></div>
+          Pull Requests = <div class="pull"></div>
+          Issues = <div class="issues"></div>
+
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script src="index.js"></script>
+</body>
+
+</html>

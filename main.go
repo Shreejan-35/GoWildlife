@@ -20,7 +20,7 @@ func checkErr(err error) {
 func main() {
 	r := gin.Default() //router
 
-	r.Use(static.Serve("/", static.LocalFile("./templates", true)))
+	r.Use(static.Serve("/", static.LocalFile("./home", true)))
 
 	models.ConnectDb()
 	app := r.Group("/api")
